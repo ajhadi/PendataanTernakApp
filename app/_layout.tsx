@@ -4,6 +4,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { createTable } from './models/Database';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -17,6 +18,16 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
+    const initializeDatabase = async () => {
+      try {
+        await createTable();
+        console.log('Database initialized');
+      } catch (error) {
+        console.error('Error initializing database:', error);
+      }
+    };
+
+    initializeDatabase();
     if (loaded) {
       SplashScreen.hideAsync();
     }
