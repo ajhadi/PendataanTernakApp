@@ -29,7 +29,9 @@ export default function RootLayout() {
 
     initializeDatabase();
     if (loaded) {
-      SplashScreen.hideAsync();
+      setTimeout(() => {
+        SplashScreen.hideAsync();
+      }, 3000);
     }
   }, [loaded]);
 
